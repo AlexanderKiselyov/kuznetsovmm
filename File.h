@@ -2,7 +2,8 @@
 #include "stdafx.h"
 #include "GlobalData.h"
 #include "IComponent.h"
-
+#include <taglib/tag.h>
+#include <taglib/fileref.h>
 using namespace std;
 class File : public IComponent
 {
@@ -16,11 +17,27 @@ class File : public IComponent
 	}
 	void SetParams() {
 		GlobalData& gb = GlobalData::getObject();
-		params = new string[gb.numberOfParams];
+		TagLib::FileRef f(path.c_str());
+		this->params = new string[gb.numberOfParams];
 		for (size_t i = 0; i < gb.numberOfParams; i++)
 		{
-			this->params[i] = gb.params[i];
-		}
+			if (gb.params[i] == "artist") {
+				this->params[i] = f.tag()->artist().toCString();
+				continue;
+			}
+			if (gb.params[i] == "album") {
+				this->params[i] = f.tag()->album().toCString();
+				continue;
+			}
+			if (gb.params[i] == "year") {
+				this->params[i] = "" + f.tag()->year();
+				continue;
+			}
+			if (gb.params[i] == "genre") {
+				this->params[i] = f.tag()->genre().toCString();
+				continue;
+			}
+		}		
 	}
 	string extension;
 public:

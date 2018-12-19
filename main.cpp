@@ -5,8 +5,6 @@
 #include "Directory.h"
 #include "File.h"
 #include "Tree.h"
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
 
 using namespace std;
 //TO-DO:
@@ -16,9 +14,6 @@ namespace fs = std::experimental::filesystem;
 
 
 int main(size_t count, char ** args) {
-	
-	TagLib::FileRef f("D:\\Music\\01. The Ringer.mp3");
-	std::cout << f.tag()->artist() << '\n';
 
 	GlobalData& gb = GlobalData::getObject();
 	//проверяем данные из входных аргументов и инициализируем статические переменные
