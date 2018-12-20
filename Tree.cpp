@@ -17,7 +17,7 @@ void Tree::AddRecursive(shared_ptr<Directory>& currentFolder, shared_ptr<File>& 
 		}
 	}
 	//создаём папку
-	shared_ptr<Directory> newDir(new Directory((*file).params[counter]));
+	shared_ptr<Directory> newDir(new Directory(currentFolder->path + '\\' +(*file).params[counter]));
 	currentFolder->Add(newDir);
 	//переходим в неё
 	AddRecursive(currentFolder->dirs[currentFolder->dirs.size() - 1],file, counter + 1);
@@ -25,14 +25,14 @@ void Tree::AddRecursive(shared_ptr<Directory>& currentFolder, shared_ptr<File>& 
 	return;
 
 }
-void Tree::CreateRecursive(shared_ptr<Directory>& currentDir,string currentPath) {
-	CreateDirectory(currentPath.c_str(), NULL);
+void Tree::CreateRecursive(shared_ptr<Directory>& currentDir) {
+	CreateDirectory(currentDir->path.c_str(), NULL);
 
 	for (size_t i = 0; i < currentDir->files.size(); i++)
-		rename((currentDir->files[i]->path).c_str(), (currentPath + "\\" + currentDir->files[i]->name).c_str());
+		rename((currentDir->files[i]->path).c_str(), (currentDir->path +'\\'+ currentDir->files[i]->name).c_str());
 	
 	for (size_t i = 0; i < currentDir->dirs.size(); i++)
-		CreateRecursive(currentDir->dirs[i], currentPath + '\\' + currentDir->dirs[i]->name);
+		CreateRecursive(currentDir->dirs[i]);
 		
 	
 	return;

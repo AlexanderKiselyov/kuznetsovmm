@@ -13,7 +13,7 @@ class Tree
 	//рекурсивное добавление файла в дерево 
 	void AddRecursive(shared_ptr<Directory>&, shared_ptr<File>&, size_t);
 	//рекурсивное создание дерева в файловой системе Windows
-	void CreateRecursive(shared_ptr<Directory>&, string);
+	void CreateRecursive(shared_ptr<Directory>&);
 public:
 	
 	Tree(shared_ptr<Directory>& dir, size_t depthLevel): depth(depthLevel), root(dir) {}
@@ -25,8 +25,8 @@ public:
 	void AddVectorOfFilesToTheTree(vector<shared_ptr<File>>& files) {
 		for (size_t i = 0; i < files.size(); i++) AddFileToTheTree(files[i]);		
 	}
-	void CreateTheTreeInWindows(string pathToTheDistDir) {
-		CreateRecursive(root,pathToTheDistDir);
+	void CreateTheTreeInWindows() {
+		CreateRecursive(root);
 	}
 	
 };

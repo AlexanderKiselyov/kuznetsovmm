@@ -7,6 +7,8 @@ namespace fs = std::experimental::filesystem;
 
 class ArgumentsValidator
 {		
+	ArgumentsValidator() = default;
+	~ArgumentsValidator() = default;
 	static bool CheckPath(string path); 
 	static bool Unique(string param);
 public:

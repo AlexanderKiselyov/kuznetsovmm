@@ -7,8 +7,7 @@
 #include "Tree.h"
 
 using namespace std;
-//TO-DO:
-//1. ѕодключить библиотеку дл€ считывани€ метаданных
+
 namespace fs = std::experimental::filesystem;
 
 
@@ -39,7 +38,7 @@ int main(size_t count, char ** args) {
 	}
 
 	//создаЄм каталог, в котором будут хранитс€ все остальные каталоги (корень дерева)
-	shared_ptr<Directory> main(new Directory("Sorted Music"));
+	shared_ptr<Directory> main(new Directory(gb.DistDirectory));
 	
 	//создаЄм дерево каталогов
 	Tree * tree = new Tree(main, gb.numberOfParams);
@@ -48,7 +47,7 @@ int main(size_t count, char ** args) {
 	tree->AddVectorOfFilesToTheTree(songs);
 
 	//создание дерева каталогов в файловой системе Windows
-	tree->CreateTheTreeInWindows(gb.DistDirectory);
+	tree->CreateTheTreeInWindows();
 
 	system("pause");
 	delete tree;

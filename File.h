@@ -55,13 +55,7 @@ public:
 		SetParams();
 	}
 	bool IComponent::isFile() const { return true; }
-
 	
-	
-	string GetArtistName() { return 0; }
-	string GetAlbumName() { return 0; }
-	
-
 	~File() { 
 		delete[] params; 
 	};
