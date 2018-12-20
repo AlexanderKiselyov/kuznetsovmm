@@ -22,9 +22,11 @@ public:
 	}
 	bool IComponent::isFile() const { return false; }
 
+	//добавление каталога в текущий каталог
 	void Add(shared_ptr<Directory>& dir) {
 		dirs.push_back(dir);
 	}
+	//добавление файла в текущий каталог 
 	void Add(shared_ptr<File>& file) {
 		files.push_back(file);
 	}

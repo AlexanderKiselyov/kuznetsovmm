@@ -14,6 +14,7 @@ namespace fs = std::experimental::filesystem;
 
 int main(size_t count, char ** args) {
 
+	//ссылка на объект класса, где хранятся глобальные переменные программы
 	GlobalData& gb = GlobalData::getObject();
 	//проверяем данные из входных аргументов и инициализируем статические переменные
 	if (!ArgumentsValidator::CheckAndSetArgs(count, args)) {
@@ -33,6 +34,7 @@ int main(size_t count, char ** args) {
 			ext == ".wav" || 
 			ext == ".aif" || 
 			ext == ".mid" || 
+			ext == ".ogg" ||
 			ext ==".flac")
 			songs.push_back(shared_ptr<File>(new File(path)));
 	}

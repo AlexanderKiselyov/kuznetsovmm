@@ -12,7 +12,7 @@ bool ArgumentsValidator::Unique(string param) {
 bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 	GlobalData& gb = GlobalData::getObject();
 	//количество аргументов должно быть не менее 4 
-	//(путь exe файла по умолчанию, путь к папке-источнику, путь к папке назанчения, количество аргументов)
+	//("путь exe файла по умолчанию", "путь к папке-источнику", "путь к папке назанчения", "количество аргументов")
 	if (size <= 4 || size > 4 + gb.MAX_NUMBER_OF_PARAMS) return false;
 	//проверка наличия папки-источника 
 	if (CheckPath(args[1])) gb.SourceDirectory = args[1]; else return false;
@@ -24,7 +24,7 @@ bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 	catch (...) {
 		return false;
 	}
-	//количество аргументов и проверка на валидность введённого значения
+	//количество параметров каталогизации и проверка на корректность введённого значения
 	size_t currentArg = atoi(args[3]);
 	if (currentArg >= 0 && currentArg <= gb.MAX_NUMBER_OF_PARAMS) {
 		gb.numberOfParams = currentArg;
@@ -38,6 +38,7 @@ bool ArgumentsValidator::CheckAndSetArgs(size_t size, char ** args) {
 		if (currentArg >= 0 && currentArg <= gb.MAX_NUMBER_OF_PARAMS - 1) {
 			//проверка на уникальность (был ли такой параметр ранее введён)
 			if (!Unique(gb.PARAMETERS_IN_ORDER[currentArg])) return false;
+			//запись введённого параметра в массив параметров
 			gb.params[i] = gb.PARAMETERS_IN_ORDER[currentArg];
 		}
 	}

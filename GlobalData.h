@@ -11,11 +11,17 @@ class GlobalData {
 	GlobalData(const GlobalData&) = delete;
 
 public:
+	//максимальное количество параметров для каталогизации
 	const size_t MAX_NUMBER_OF_PARAMS = 4;
+	//строковое представление параметров, введённых пользователем (PARAMETERS_IN_ORDER[0] - "artist")
 	const string* PARAMETERS_IN_ORDER = new string[MAX_NUMBER_OF_PARAMS]{ "artist", "album", "year", "genre" };
+	//количество параметров для каталогизации, введённых пользователем
 	size_t numberOfParams;
+	//массив параметров, введённых пользователем
 	string* params;
+	//путь к папке, где лежат аудиофайлы для каталогизации
 	string SourceDirectory;
+	//путь к папке, где необходимо создать дерево каталогов 
 	string DistDirectory;
 
 	static GlobalData& getObject() {

@@ -12,9 +12,11 @@ class File : public IComponent
 	string GetNameFromPath() {
 		return path.substr(path.find_last_of('\\') + 1);
 	}
+	//получение расширения файла по его пути в файловой системе Windows
 	string GetExtensionFromPath() {	
 		return path.substr(path.find_last_of('.') + 1);
 	}
+	//задание параметров файла (имя исполнителя, альбом, год издания, жанр)
 	void SetParams() {
 		GlobalData& gb = GlobalData::getObject();
 		TagLib::FileRef f(path.c_str());
